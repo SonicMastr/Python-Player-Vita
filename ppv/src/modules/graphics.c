@@ -2,6 +2,7 @@
 #include <python2.7/Python.h>
 #include <vita2d.h>
 #include <psp2/kernel/modulemgr.h>
+#include <psp2/kernel/clib.h>
 
 
 static PyObject *graphics_init(PyObject *self) {
@@ -30,11 +31,12 @@ static PyObject *graphics_end(PyObject *self) {
 
 static PyObject *graphics_rectangle(PyObject *self, PyObject* pArgs) {
 
-    int x, y, w, h;
+    float x, y, w, h;
     unsigned int color = 0xFF0000FF;
-    if(!PyArg_ParseTuple(pArgs, "iiii|I", &x, &y, &w, &h, &color))
+    if(!PyArg_ParseTuple(pArgs, "ffff|I", &x, &y, &w, &h, &color))
 		  return NULL;
-    vita2d_draw_rectangle((float)x, (float)y, (float)w, (float)h, color);
+    sceClibPrintf("x %f\n", x);
+    vita2d_draw_rectangle(x, y, w, h, color);
     
     Py_RETURN_NONE;
 }
