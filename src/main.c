@@ -8,15 +8,16 @@
 int _newlib_heap_size_user = 192 * 1024 * 1024;
 
 PyMODINIT_FUNC initppv_graphics_vita2d();
+PyMODINIT_FUNC initppv_graphics_gxm();
 
 #define NET_MEMORY (16 * 1024)
 
 static char *memory[NET_MEMORY];
 
 static struct _inittab builtins[] = {
-
-    {"ppv.graphics.vita2d", initppv_graphics_vita2d},
-    {NULL, NULL}
+	{ "ppv.graphics.gxm", initppv_graphics_gxm },
+    { "ppv.graphics.vita2d", initppv_graphics_vita2d },
+    { NULL, NULL }
 };
 
 int main(int argc, char *argv[]) {
