@@ -7,7 +7,7 @@
 
 int _newlib_heap_size_user = 192 * 1024 * 1024;
 
-PyMODINIT_FUNC initppv_graphics();
+PyMODINIT_FUNC initppv_graphics_vita2d();
 
 #define NET_MEMORY (16 * 1024)
 
@@ -15,7 +15,7 @@ static char *memory[NET_MEMORY];
 
 static struct _inittab builtins[] = {
 
-    {"ppv_graphics", initppv_graphics},
+    {"ppv.graphics.vita2d", initppv_graphics_vita2d},
     {NULL, NULL}
 };
 
@@ -52,7 +52,9 @@ int main(int argc, char *argv[]) {
 	PyImport_ExtendInittab(builtins);
 	Py_InitializeEx(0);
 
-	PyRun_SimpleString("import sys\nsys.path.append('ux0:/data/lib/python2.7')\nsys.path.append('ux0:/data/lib/python27.zip')\n");  // Add support for External Modules
+	PySys_SetPath("app0:lib/python27.zip;app0:lib/python2.7;ux0:/data/lib/python27.zip;ux0:/data/lib/python2.7"); // Set the Paths for our Modules
+
+	PyRun_SimpleString("import sys\n");
 	PyRun_SimpleString("import os\n");
 	PyRun_SimpleString("print os.name\n");
 	PyRun_SimpleString("print sys.platform\n");
