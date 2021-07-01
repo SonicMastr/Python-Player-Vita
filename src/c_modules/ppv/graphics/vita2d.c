@@ -34,7 +34,7 @@ static PyObject *end(PyObject *self) {
 
 static PyObject *set_clear_color(PyObject *self, PyObject* pArgs) {
 
-    unsigned int color; // Default Color (Black)
+    unsigned int color = 0x0; // Default Color (Black)
     if(!PyArg_ParseTuple(pArgs, "I", &color))
 		return NULL;
     vita2d_set_clear_color(color);
