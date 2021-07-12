@@ -1,2 +1,6 @@
 .vscode
 build
+bindings/**/*.py
+!bindings/**/__init__.py
+bindings/**/*.c
+lib
