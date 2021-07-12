@@ -116,4 +116,5 @@ vita_create_vpk("${VPK}" "${TITLE_ID}" "${SELF}"
   FILE "$ENV{VITASDK}/arm-vita-eabi/lib/python27.zip" lib/python27.zip
   FILE lib/bindings lib/python2.7
   FILE src/main.py main.py
+  FILE png.png png.png
 )
