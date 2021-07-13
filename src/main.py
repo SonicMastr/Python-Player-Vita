@@ -1,35 +1,40 @@
-from NativeAPI.ctrl import *
-from vita2d import *
+from SDL2.SDL2 import *
+from SDL2.SDL2_image import *
 
-vita2d_init()
-vita2d_set_vblank_wait(1)
-image = vita2d_load_PNG_file("app0:png.png") # Set Image Object
-font = vita2d_load_default_pgf() # Set Font Object
-sceCtrlSetSamplingMode(SCE_CTRL_MODE_DIGITAL)
+def draw():
+    SDL_RenderClear(renderer)
+    dstrect = SDL_Rect()
+    dstrect.x = 100
+    dstrect.y = 100
+    dstrect.w = imageWidth
+    dstrect.h = imageHeight
+    SDL_RenderCopy(renderer, imageTexture, None, dstrect)
+    SDL_RenderPresent(renderer)
 
-ctrl = SceCtrlData() # Set Control Data Object
+def main():
+    global window
+    global renderer
+    global imageTexture
+    global imageWidth
+    global imageHeight
 
-def RGBA(r, g, b, a):
-    return (a<<24|b<<16|g<<8|r);
+    SDL_Init(SDL_INIT_VIDEO)
+    IMG_Init(IMG_INIT_PNG)
 
-c = 960.0
-while True:
-    vita2d_start_drawing()
-    vita2d_clear_screen()
+    window = SDL_CreateWindow("SDL Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 960, 544, SDL_WINDOW_SHOWN)
 
-    sceCtrlPeekBufferPositive(0, ctrl, 1) # Poll Input
+    SDL_SetHint(SDL_HINT_RENDER_VSYNC, "1")
 
-    if (SCE_CTRL_CROSS & ctrl.buttons):
-        vita2d_draw_rectangle(c,200.0,500.0,100.0, RGBA(255, 0, 0, 255)) # Red
-        vita2d_pgf_draw_text(font, 0, 100, RGBA(0, 255, 0, 255), 1.0, "Pressing Cross!")
-    else:
-        vita2d_draw_rectangle(c,200.0,500.0,100.0, RGBA(0, 255, 255, 255)) # Cyan
-        vita2d_pgf_draw_text(font, 0, 100, RGBA(255, 255, 255, 255), 1.0, "Not Pressing Cross")
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)
 
-    vita2d_draw_fill_circle(960.0/2, 544.0/2, 200.0, RGBA(255, 0, 255, 255)) # Magenta (Or Purple, IDK)
-    vita2d_draw_texture_scale(image, 940.0/2, 544.0/2, 0.8, 0.8)
-    vita2d_end_drawing()
-    vita2d_swap_buffers()
-    c = c - 2.5
-    if c == -500.0:
-        c = 960.0
+    surface = IMG_Load("app0:png.png");
+    imageTexture = SDL_CreateTextureFromSurface(renderer, surface);
+    imageWidth = surface.w
+    imageHeight = surface.h
+    SDL_FreeSurface(surface);
+
+    while True:
+        draw()
+
+if __name__ == "__main__":
+    main()

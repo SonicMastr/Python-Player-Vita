@@ -1,9 +1,5 @@
 #include <stdlib.h>
 #include <python2.7/Python.h>
-#include <psp2/net/net.h>
-#include <sys/socket.h>
-#include <psp2/sysmodule.h>
-#include <psp2/net/netctl.h>
 
 int _newlib_heap_size_user = 192 * 1024 * 1024;
 unsigned int sceLibcHeapSize = 2 * 1024 * 1024;
