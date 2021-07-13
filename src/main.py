@@ -2,12 +2,15 @@ from SDL2.SDL2 import *
 from SDL2.SDL2_image import *
 
 def draw():
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255)
     SDL_RenderClear(renderer)
     dstrect = SDL_Rect()
-    dstrect.x = 100
-    dstrect.y = 100
+    dstrect.x = 250
+    dstrect.y = 30
     dstrect.w = imageWidth
     dstrect.h = imageHeight
+    SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255)
+    SDL_RenderFillRect(renderer, dstrect)
     SDL_RenderCopy(renderer, imageTexture, None, dstrect)
     SDL_RenderPresent(renderer)
 
@@ -17,6 +20,8 @@ def main():
     global imageTexture
     global imageWidth
     global imageHeight
+
+    print(type(SDL_INIT_VIDEO)) 
 
     SDL_Init(SDL_INIT_VIDEO)
     IMG_Init(IMG_INIT_PNG)
