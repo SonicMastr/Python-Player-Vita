@@ -1,5 +1,4 @@
-# Python-Player-Vita
-### Name to be changed
+# Python-Player-Vita (Name to be changed)
 
 Create applications for the PSVita using Python to interface with Native PSVita libraries.
 
