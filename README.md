@@ -3,7 +3,7 @@
 
 Create applications for the PSVita using Python to interface with Native PSVita libraries.
 
-Use the included libraries or even extend the application with your own. The application will audiomatically run `main.py`
+Use the included libraries or even extend the application with your own. The application will automatically run `main.py`
 
 
 ## Build Instructions
