@@ -30,6 +30,7 @@ PyMODINIT_FUNC init_SDL2_net();
 PyMODINIT_FUNC init_SDL2_ttf();
 PyMODINIT_FUNC init_SDL2();
 PyMODINIT_FUNC init_sysmodule();
+PyMODINIT_FUNC init_threadmgr();
 PyMODINIT_FUNC init_touch();
 PyMODINIT_FUNC init_vita2d();
 
@@ -60,6 +61,7 @@ static struct _inittab builtins[] = {
 	{"_SDL2_ttf", init_SDL2_ttf},
 	{"_SDL2", init_SDL2},
 	{"_sysmodule", init_sysmodule},
+	{"_threadmgr", init_threadmgr},
 	{"_touch", init_touch},
 	{"_vita2d", init_vita2d},
 	{NULL, NULL}};
